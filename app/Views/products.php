@@ -8,13 +8,18 @@
 <body>
     <form action="/save" method="post">
             <label>code</label>
-            <input type="text" name="code" placeholder="code">
+            <input type="hidden" name="id" value="<?= isset($pro['id']) ? $pro['id'] : '' ?>">
+
+            <input type="text" name="code" placeholder="code" value="<?= isset($pro['code']) ? $pro['code'] : '' ?>">
+
             <br><br>
             <label>name</label>
-            <input type="text" name="name" placeholder="name">
+            <input type="text" name="name" placeholder="name" value="<?= isset($pro['name']) ? $pro['name'] : '' ?>">
+
             <br><br>
             <label>quantity</label>
-            <input type="text" name="quantity" placeholder="quantity">
+            <input type="text" name="quantity" placeholder="quantity" value="<?= isset($pro['quantity']) ? $pro['quantity'] : '' ?>">
+
             <br><br>
             <input type="submit" value="save">
     </form>
@@ -31,7 +36,7 @@
                 <td><?= $pr['code'] ?></td>
                 <td><?= $pr['name'] ?></td>
                 <td><?= $pr['quantity'] ?></td>
-                <td><a href="/delete/<?= $pr['id'] ?>">delete</a></td>
+                <td><a href="/delete/<?= $pr['id'] ?>">delete</a>|| <a href="/edit/<?= $pr['id'] ?>">edit</a></td>
             </tr>
 
             <?php endforeach; ?>

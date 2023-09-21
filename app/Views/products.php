@@ -3,43 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Product Management</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Custom CSS for the purple and blue theme -->
+    <style>
+        body {
+            background-color: #3f51b5; /* Blue */
+            color: #673ab7; /* Purple */
+        }
+
+        .container {
+            background-color: #ffffff; /* White */
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            background-color: #673ab7 !important; /* Purple */
+            border-color: #3f51b5 !important; /* Blue */
+        }
+
+        table {
+            background-color: #ffffff; /* White */
+            color: #3f51b5; /* Blue */
+        }
+
+        th, td {
+            border-color: #3f51b5 !important; /* Blue */
+        }
+    </style>
 </head>
 <body>
-    <form action="/save" method="post">
-            <label>code</label>
-            <input type="hidden" name="id" value="<?= isset($pro['id']) ? $pro['id'] : '' ?>">
+    <div class="container">
+        <h1 class="mt-5">Product Management</h1>
+        <form action="/save" method="post">
+            <div class="form-group">
+                <label for="code">Code</label>
+                <input type="hidden" name="id" value="<?= isset($pro['id']) ? $pro['id'] : '' ?>">
+                <input type="text" class="form-control" id="code" name="code" placeholder="Code" value="<?= isset($pro['code']) ? $pro['code'] : '' ?>">
+            </div>
 
-            <input type="text" name="code" placeholder="code" value="<?= isset($pro['code']) ? $pro['code'] : '' ?>">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="<?= isset($pro['name']) ? $pro['name'] : '' ?>">
+            </div>
 
-            <br><br>
-            <label>name</label>
-            <input type="text" name="name" placeholder="name" value="<?= isset($pro['name']) ? $pro['name'] : '' ?>">
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Quantity" value="<?= isset($pro['quantity']) ? $pro['quantity'] : '' ?>">
+            </div>
 
-            <br><br>
-            <label>quantity</label>
-            <input type="text" name="quantity" placeholder="quantity" value="<?= isset($pro['quantity']) ? $pro['quantity'] : '' ?>">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
 
-            <br><br>
-            <input type="submit" value="save">
-    </form>
-    <h1>Product Listing</h1>
-    <table border="1">
-        <tr>
-            <th>code</th>
-            <th>name</th>
-            <th>quantity</th>
-            <th>action</th>
-        </tr>
-        <?php foreach ($product as $pr): ?>
-            <tr>
-                <td><?= $pr['code'] ?></td>
-                <td><?= $pr['name'] ?></td>
-                <td><?= $pr['quantity'] ?></td>
-                <td><a href="/delete/<?= $pr['id'] ?>">delete</a>|| <a href="/edit/<?= $pr['id'] ?>">edit</a></td>
-            </tr>
+        <h2 class="mt-5">Product Listing</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($product as $pr): ?>
+                    <tr>
+                        <td><?= $pr['code'] ?></td>
+                        <td><?= $pr['name'] ?></td>
+                        <td><?= $pr['quantity'] ?></td>
+                        <td><a href="/delete/<?= $pr['id'] ?>">Delete</a> || <a href="/edit/<?= $pr['id'] ?>">Edit</a></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 
-            <?php endforeach; ?>
-    </table>
+    <!-- Add Bootstrap JavaScript and jQuery libraries (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
